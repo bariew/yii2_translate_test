@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@typescript-eslint/parser": "^8.54.0",
+    "vue-eslint-parser": "^10.2.0"
+  }
+}

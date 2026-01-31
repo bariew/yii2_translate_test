@@ -1,0 +1,46 @@
+services:
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=verysecret
+      - MYSQL_DATABASE=yii2advanced
+      - MYSQL_USER=yii2advanced
+      - MYSQL_PASSWORD=secret
+
+  backend:
+    build: backend
+    ports:
+      - 21080:80
+    volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+      - ./:/app
+    command:
+      - php init --env=Development --overwrite=n
+    depends_on:
+      - mysql
+
+  frontend:
+    build: frontend
+    ports:
+      - 20080:80
+    volumes:
+      # Re-use local composer cache via host-volume
+      - ~/.composer-docker/cache:/root/.composer/cache:delegated
+      # Mount source-code for development
+      - ./:/app
+    depends_on:
+      - backend
+
+  vue:
+    build: ./vue
+    container_name: vue
+    ports:
+      - "5173:8080"
+    volumes:
+      - ./vue:/app
+      - /app/node_modules
+    command: npm run dev
+    depends_on:
+      - frontend
