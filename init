@@ -17,7 +17,6 @@ var_dump($params);
 $root = str_replace('\\', '/', __DIR__);
 $envs = require "$root/environments/index.php";
 $envNames = array_keys($envs);
-
 echo "Yii Application Initialization Tool v1.0\n\n";
 
 $envName = null;
@@ -109,9 +108,6 @@ foreach ($callbacks as $callback) {
         $callback($root, $env[$callback]);
     }
 }
-sleep(5);
-exec("yii migrate --interactive=0");
-
 echo "\n  ... initialization completed.\n\n";
 
 function getFileList($root, $basePath = '')

@@ -16,8 +16,6 @@ services:
       - ~/.composer-docker/cache:/root/.composer/cache:delegated
       # Mount source-code for development
       - ./:/app
-    command:
-      - php init --env=Development --overwrite=n
     depends_on:
       - mysql
 

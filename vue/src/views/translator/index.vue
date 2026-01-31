@@ -16,7 +16,7 @@
       <th></th>
       <th></th>
       <th>
-        <select v-model="selectedAvailability">
+        <select v-model="selectedAvailability" class="form-control">
           <option></option>
           <option
               v-for="(item, index) in availabilityList"
@@ -64,7 +64,7 @@ export default defineComponent({
     })
 
     const filteredData = computed(() => {
-      if (!selectedAvailability.value) {
+      if (selectedAvailability.value === '') {
         return gridData.value
       }
       return gridData.value.filter(item =>

@@ -1,3 +1,13 @@
+# Docker Install
+1. Запустите докер: 
+```
+docker compose build ; docker compose up
+```
+2. Инициализируйте проект:
+```
+docker compose exec frontend sh -c "composer install ;  php init --env=Development --overwrite=n ; php yii migrate --interactive=0"
+```
+
 # Задача: Фильтрация переводчиков по их занятости
 ### 1. В Бэкенде добавить для Переводчиков поле "availability".
 ### 2. В Фронтенде На странице редактирования Переводчика добавить возможность задавать значения для этого поля: "Рабочие дни", "Выходные", "Недоступен" 
